@@ -4,12 +4,12 @@ const User = require('./user.db.js');
 const bcrypt = require ('bcrypt')
 const err = require('../errors/index.js');
 
-exports.create_user_in_db = async(username , email , password , role )=>{
+exports.create_user_in_db = async(username , email , password , role = 'member' )=>{
 
     try {
             // check the in takes
-            if (!username || !email || !password || !role) {
-                throw new err.BadRequestError ("Missing required user fields");
+            if (!username || !email || !password) {
+                throw new err.BadRequestError ("\nMissing required user fields for sign in\n");
             };
             
             // hash the password 
@@ -50,4 +50,25 @@ exports.create_user_in_db = async(username , email , password , role )=>{
  *      |
  */
 
+exports.get_user_by_email = async(email) => {
+    if(!email){
+        throw new err.BadRequestError("\nMissing Required filed provied the email\n")
+    }
+    //get the infos from the DB
+    const user = await User.findOne({email: email});
+    if (!user){
+        throw new err.NotFoundError("\nCouldn't find the user in the DB\nPlease sign in\n");
+    }
+    // return the user infos all of it 
+    return user
+}
+/**
+ * get_user_by_email:
+ *  - to seacrh the user by email from the DB 
+ *  - needs only the email
+ *  
+ * Returns : 
+ *      |
+ *      |-> the user object fromt the DB
+ */
 
