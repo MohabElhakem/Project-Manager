@@ -7,7 +7,6 @@ const validateSchema = require('../../validator/joiSchema')
 // Mount all the routers in here
 router.post('/user/sign', vm.validate(validateSchema.signIn) , userController.sign );
 
-router.post('/user/login', vm.validate(validateSchema.logIn) , userController.sign );
-
+router.post('/user/login', vm.validate(validateSchema.logIn) , userController.login)
 
 module.exports = router
