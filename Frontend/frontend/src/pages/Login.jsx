@@ -1,6 +1,9 @@
 // We import useState so React can remember values (email & password)
 import { useState } from "react";
 import { loginUser } from "../api/auth.api";
+import styles from "./Login.module.css"
+import FormInput from '../component/FormInput'
+import { Link } from 'react-router-dom';
 
 
 function Login (){
@@ -34,33 +37,39 @@ function Login (){
     //
     //
     return (
-        <div>
-            {/* Page tilte */}
-            <h1>Login</h1>
+        <div className= {styles.page}>
 
-            {/* Form Conatiner */}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type ="email"
-                        value = {email}
-                        onChange={(e)=> setEmail(e.target.value)}
+            <div className= {styles.container}>
+
+
+                <h1 className = {styles.title}>Log In</h1>
+
+
+                {/* start the form from here */}
+                <form onSubmit={ handleSubmit }> 
+                    <FormInput 
+                        label= "Email"
+                        type = 'email'
+                        placeholder= "Enter Your Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
-                </div>
 
-                <div>
-                    <label>Password</label>
-                    <input
-                        type = "password"
-                        value = {password}
+                    <FormInput 
+                        label="Password"
+                        type = 'password'
+                        placeholder= "Give me your secret"
+                        value= {password}
                         onChange={(e)=> setPassword(e.target.value)}
                     />
-                </div>
-                
-                {/* Submit Button */}
-                <button type = 'submit'>Login</button>
-            </form>
+                    <button type = "submit" className={styles.button}>Ready</button>
+                </form>
+
+                <p className = {styles.formFooter}>
+                    Don't have an account?
+                </p>
+                <Link to= "/signup" className={styles.signLink}> Sign up </Link>
+            </div>
         </div>
     );
     

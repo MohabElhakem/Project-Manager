@@ -1,0 +1,25 @@
+.form-input {
+    display: flex; /* enable flex layout*/
+    flex-direction: column; /* label above input */
+    margin-bottom: 2rem;    /* space between inputs */
+}
+
+.form-label {
+    margin-bottom:5px; /* space between label and input*/
+    font-size:medium;     /* */
+    color: rgb(49, 49, 49) ; /* */
+    font-weight: bold;
+}
+
+.form-control{
+    padding: 0.6rem; /* space inside the input */
+    border-radius: 6px; /* for rounding the corners*/
+    border: 1px solid #e7e7e7; /* dark input back ground */
+    color: #000000c5; /* text color inside the input box */
+    background-color:#e7e7e7 ;
+
+}
+.form-control:focus{  /* when input is active */
+    outline: none;  /* removes browser default outline */
+    border-color: #4da3ff;  /* highlight active input */
+}
